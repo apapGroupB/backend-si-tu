@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class UserModel implements Serializable {
     /**
 	 * 
@@ -44,15 +44,13 @@ public class UserModel implements Serializable {
     @Size(max = 200)
     @Column(name = "password", nullable = true)
     private String password;
-
- 
     
     @NotNull
     @Column(name = "id_role", nullable = false)
     private int id_role;
     
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<PengajuanSuratModel> listPengajuanSurat = new ArrayList<PengajuanSuratModel>();
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<PengajuanSuratModel> listPengajuanSurat = new ArrayList<PengajuanSuratModel>();
 
 	public long getId() {
 		return id;
@@ -94,13 +92,13 @@ public class UserModel implements Serializable {
 		this.id_role = id_role;
 	}
 
-	public List<PengajuanSuratModel> getListPengajuanSurat() {
-		return listPengajuanSurat;
-	}
-
-	public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
-		this.listPengajuanSurat = listPengajuanSurat;
-	}
+//	public List<PengajuanSuratModel> getListPengajuanSurat() {
+//		return listPengajuanSurat;
+//	}
+//
+//	public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
+//		this.listPengajuanSurat = listPengajuanSurat;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

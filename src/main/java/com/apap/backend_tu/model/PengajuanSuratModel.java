@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * PilotModel
  */
 @Entity
-@Table(name = "pengajuan_user")
+@Table(name = "pengajuan_surat")
 public class PengajuanSuratModel implements Serializable {
     /**
 	 * 
@@ -66,11 +66,11 @@ public class PengajuanSuratModel implements Serializable {
     @Column(name = "id_jenis_surat", nullable = false)
     private int id_jenis_surat;
     
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private UserModel user;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    private UserModel user;
 
 	public long getId() {
 		return id;
@@ -128,13 +128,13 @@ public class PengajuanSuratModel implements Serializable {
 		this.id_jenis_surat = id_jenis_surat;
 	}
 
-	public UserModel getUser() {
-		return user;
-	}
-
-	public void setUser(UserModel user) {
-		this.user = user;
-	}
+//	public UserModel getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(UserModel user) {
+//		this.user = user;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
