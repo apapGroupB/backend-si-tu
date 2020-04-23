@@ -7,14 +7,11 @@ import com.apap.backend_tu.model.LowonganModel;
 import com.apap.backend_tu.service.LowonganService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/lowongan")
+@CrossOrigin(origins = "*")
 public class LowonganController {
 
     @Autowired
