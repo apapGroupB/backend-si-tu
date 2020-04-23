@@ -1,6 +1,5 @@
 package com.apap.backend_tu.model;
 
-
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -31,46 +29,50 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "pengajuan_surat")
 public class PengajuanSuratModel implements Serializable {
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    @NotNull
-    @Size(max = 50)
-    @Column(name = "nomor_surat", nullable = false, unique = true)
-    private String nomor_surat;
-    
-    @NotNull
-    @Column(name = "tanggal_pengajuan", nullable = false)
-    private Date tanggal_pengajuan;
-    
-    @NotNull
-    @Column(name = "tanggal_disetujui", nullable = false)
-    private Date tanggal_disetujui;
-    
+	@NotNull
+	@Size(max = 50)
+	@Column(name = "nomor_surat", nullable = false, unique = true)
+	private String nomor_surat;
 
-    @NotNull
-    @Size(max = 200)
-    @Column(name = "keterangan", nullable = true)
-    private String keterangan;
+	@NotNull
+	@Column(name = "tanggal_pengajuan", nullable = false)
+	private Date tanggal_pengajuan;
 
-    @NotNull
-    @Column(name = "status", nullable = false)
-    private int status;
-    
-    @NotNull
-    @Column(name = "id_jenis_surat", nullable = false)
-    private int id_jenis_surat;
-    
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonIgnore
-//    private UserModel user;
+	@NotNull
+	@Column(name = "tanggal_disetujui", nullable = false)
+	private Date tanggal_disetujui;
+
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "keterangan", nullable = true)
+	private String keterangan;
+
+	@NotNull
+	@Column(name = "status", nullable = false)
+	private int status;
+
+	@NotNull
+	@Column(name = "id_jenis_surat", nullable = false)
+	private int id_jenis_surat;
+
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "uuid_user", nullable = false)
+	private String uuid_user;
+
+	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	// @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
+	// @OnDelete(action = OnDeleteAction.CASCADE)
+	// @JsonIgnore
+	// private UserModel user;
 
 	public long getId() {
 		return id;
@@ -128,17 +130,24 @@ public class PengajuanSuratModel implements Serializable {
 		this.id_jenis_surat = id_jenis_surat;
 	}
 
-//	public UserModel getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(UserModel user) {
-//		this.user = user;
-//	}
+	// public UserModel getUser() {
+	// return user;
+	// }
+	//
+	// public void setUser(UserModel user) {
+	// this.user = user;
+	// }
+
+	public String getUuid_user() {
+		return this.uuid_user;
+	}
+
+	public void setUuid_user(String uuid_user) {
+		this.uuid_user = uuid_user;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-    
-    
+
 }
