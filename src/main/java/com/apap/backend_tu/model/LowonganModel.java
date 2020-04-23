@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 public class LowonganModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -31,7 +32,7 @@ public class LowonganModel implements Serializable {
 
     @NotNull
     @Size(max = 200)
-    @Column(name = "judul", nullable = false, unique = true)
+    @Column(name = "judul", nullable = false)
     private String judul;
 
     public String getJudul() {
