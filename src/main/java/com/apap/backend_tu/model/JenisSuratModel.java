@@ -27,8 +27,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * PilotModel
  */
 @Entity
-@Table(name = "pengajuan_surat")
-public class PengajuanSuratModel implements Serializable {
+@Table(name = "jenis_surat")
+public class JenisSuratModel implements Serializable {
 	/**
 	 * 
 	 */
@@ -42,45 +42,26 @@ public class PengajuanSuratModel implements Serializable {
 	@Column(name = "nama", nullable = false, unique = true)
 	private String nama;
 
+
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "keterangan", nullable = true)
 	private String keterangan;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNama() {
-		return nama;
-	}
-
-	public void setNama(String nama) {
-		this.nama = nama;
-	}
-
-	public String getKeterangan() {
-		return keterangan;
-	}
-
-	public void setKeterangan(String keterangan) {
-		this.keterangan = keterangan;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 
 	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	// @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
 	// @OnDelete(action = OnDeleteAction.CASCADE)
-	// @JsonIgnoreS
+	// @JsonIgnore
 	// private UserModel user;
+
+
+
+
+
+
+
 
 
 
@@ -92,5 +73,46 @@ public class PengajuanSuratModel implements Serializable {
 	// this.user = user;
 	// }
 
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
+	public long getId() {
+		return id;
+	}
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	public String getNama() {
+		return nama;
+	}
+
+
+
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+
+
+
+	public String getKeterangan() {
+		return keterangan;
+	}
+
+
+
+	public void setKeterangan(String keterangan) {
+		this.keterangan = keterangan;
+	}
 
 }
