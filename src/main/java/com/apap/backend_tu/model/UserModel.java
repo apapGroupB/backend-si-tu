@@ -22,10 +22,16 @@ public class UserModel implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long uuid;
+	private long id;
+	
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "uuid", nullable = true)
+	private String uuid;
 
 	@NotNull
 	@Size(max = 200)
@@ -41,15 +47,19 @@ public class UserModel implements Serializable {
 	@Column(name = "id_role", nullable = false)
 	private int id_role;
 
-	// @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	// private List<PengajuanSuratModel> listPengajuanSurat = new
-	// ArrayList<PengajuanSuratModel>();
-
 	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getUuid() {
 		return uuid;
 	}
 
-	public void setId(long uuid) {
+	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
@@ -77,6 +87,16 @@ public class UserModel implements Serializable {
 		this.id_role = id_role;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	// @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	// private List<PengajuanSuratModel> listPengajuanSurat = new
+	// ArrayList<PengajuanSuratModel>();
+
+
+
 	// public List<PengajuanSuratModel> getListPengajuanSurat() {
 	// return listPengajuanSurat;
 	// }
@@ -86,8 +106,6 @@ public class UserModel implements Serializable {
 	// this.listPengajuanSurat = listPengajuanSurat;
 	// }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
 
 }
