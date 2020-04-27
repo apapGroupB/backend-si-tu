@@ -28,4 +28,26 @@ public class PengajuanSuratController {
 		List<PengajuanSuratModel> pengajuanSurat = pengajuanSuratService.getAllPengajuanSurat();
 		return pengajuanSurat;	
 	}
+
+	@PostMapping(value = "/add")
+	public PengajuanSuratModel addPengajuanSuratSubmit(@RequestBody PengajuanSuratModel pengajuanSurat) {
+		return pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
+	}
+
+	@PostMapping(value = "/update/{id}")
+	public PengajuanSuratModel updatePengajuanSuratSubmit(
+			@RequestBody PengajuanSuratModel pengajuanSurat,
+			@PathVariable long id) {
+		pengajuanSuratService.updatePengajuanSurat(id, pengajuanSurat);
+		PengajuanSuratModel newPengajuan = pengajuanSuratService.getPengajuanSuratById(id);
+		return newPengajuan;
+	}
+
+	@GetMapping(value = "/delete/{id}")
+	private Boolean hapusPengajuan(@PathVariable(value = "id") long id, Model model) {
+		pengajuanSuratService.deletePengajuanSurat(id);
+		return true;
+	}
+
+
 }

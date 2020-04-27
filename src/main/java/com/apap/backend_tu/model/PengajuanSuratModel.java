@@ -50,7 +50,6 @@ public class PengajuanSuratModel implements Serializable {
     @Column(name = "tanggal_disetujui", nullable = false)
     private Date tanggal_disetujui;
 
-	
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "keterangan", nullable = true)
