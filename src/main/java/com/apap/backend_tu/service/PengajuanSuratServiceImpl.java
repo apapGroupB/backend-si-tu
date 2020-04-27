@@ -1,5 +1,9 @@
 package com.apap.backend_tu.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +29,10 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
 
 	@Override
 	public PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
+        Date date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        String strDate = dateFormat.format(date);  
+		pengajuanSurat.setUuid_user(strDate);
 		pengajuanSuratDb.save(pengajuanSurat);
 		return pengajuanSurat;
 	}

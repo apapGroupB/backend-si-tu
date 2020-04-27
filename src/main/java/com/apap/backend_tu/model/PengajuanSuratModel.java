@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -63,8 +65,8 @@ public class PengajuanSuratModel implements Serializable {
 	@Column(name = "id_jenis_surat", nullable = false)
 	private int id_jenis_surat;
 	
+	
 	@NotNull
-	@Size(max = 200)
 	@Column(name = "uuid_user", nullable = true)
 	private String uuid_user;
 

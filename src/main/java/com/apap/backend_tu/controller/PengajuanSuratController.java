@@ -6,6 +6,7 @@ import com.apap.backend_tu.model.LowonganModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import com.apap.backend_tu.model.PengajuanSuratModel;
@@ -29,7 +30,7 @@ public class PengajuanSuratController {
 		return pengajuanSurat;	
 	}
 
-	@PostMapping(value = "/add")
+	@PostMapping(value = "/add",consumes= {MimeTypeUtils.APPLICATION_JSON_VALUE})
 	public PengajuanSuratModel addPengajuanSuratSubmit(@RequestBody PengajuanSuratModel pengajuanSurat) {
 		return pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
 	}
