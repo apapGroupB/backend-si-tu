@@ -31,6 +31,11 @@ public class LowonganServiceImpl implements LowonganService {
     }
 
     @Override
+    public void removeJenisLowongan(long id) {
+        jenisLowonganDb.deleteById(id);
+    }
+
+    @Override
     public List<JenisLowonganModel> getAllJenisLowongan() {
         return jenisLowonganDb.findAll();
     }
@@ -45,4 +50,17 @@ public class LowonganServiceImpl implements LowonganService {
     public List<LowonganModel> getAllLowongan() {
         return lowonganDb.findAll();
     }
+
+    @Override
+    public void updateLowongan(LowonganModel lowongan) {
+        LowonganModel dataLowongan = lowonganDb.getOne(lowongan.getId());
+        dataLowongan.setJudul(lowongan.getJudul());
+        dataLowongan.setTanggal_dibuka(lowongan.getTanggal_dibuka());
+        dataLowongan.setTanggal_ditutup(lowongan.getTanggal_ditutup());
+        dataLowongan.setKeterangan(lowongan.getKeterangan());
+        dataLowongan.setJumlah(lowongan.getJumlah());
+        dataLowongan.setId_jenis_lowongan(lowongan.getId_jenis_lowongan());
+        dataLowongan.setUuid_user(lowongan.getUuid_user());
+    }
+
 }

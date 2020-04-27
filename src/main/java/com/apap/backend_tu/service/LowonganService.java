@@ -11,8 +11,12 @@ public interface LowonganService {
 
     List<JenisLowonganModel> getAllJenisLowongan();
 
+    void removeJenisLowongan(long id);
+
     LowonganModel addLowongan(LowonganModel lowongan);
 
     List<LowonganModel> getAllLowongan();
+
+    void updateLowongan(LowonganModel lowongan);
 
 }
