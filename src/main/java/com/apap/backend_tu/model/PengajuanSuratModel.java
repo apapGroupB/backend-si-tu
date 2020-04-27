@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -38,17 +40,17 @@ public class PengajuanSuratModel implements Serializable {
 	private long id;
 
 	@NotNull
-	@Size(max = 50)
+	@Size(max = 200)
 	@Column(name = "nomor_surat", nullable = false, unique = true)
 	private String nomor_surat;
-
-	@NotNull
-	@Column(name = "tanggal_pengajuan", nullable = false)
-	private Date tanggal_pengajuan;
-
-	@NotNull
-	@Column(name = "tanggal_disetujui", nullable = false)
-	private Date tanggal_disetujui;
+	
+    @NotNull
+    @Column(name = "tanggal_pengajuan", nullable = false)
+    private Date tanggal_pengajuan;
+    
+    @NotNull
+    @Column(name = "tanggal_disetujui", nullable = false)
+    private Date tanggal_disetujui;
 
 	@NotNull
 	@Size(max = 200)
@@ -58,21 +60,15 @@ public class PengajuanSuratModel implements Serializable {
 	@NotNull
 	@Column(name = "status", nullable = false)
 	private int status;
-
+	
 	@NotNull
 	@Column(name = "id_jenis_surat", nullable = false)
 	private int id_jenis_surat;
-
+	
+	
 	@NotNull
-	@Size(max = 200)
-	@Column(name = "uuid_user", nullable = false)
+	@Column(name = "uuid_user", nullable = true)
 	private String uuid_user;
-
-	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	// @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
-	// @OnDelete(action = OnDeleteAction.CASCADE)
-	// @JsonIgnore
-	// private UserModel user;
 
 	public long getId() {
 		return id;
@@ -130,16 +126,8 @@ public class PengajuanSuratModel implements Serializable {
 		this.id_jenis_surat = id_jenis_surat;
 	}
 
-	// public UserModel getUser() {
-	// return user;
-	// }
-	//
-	// public void setUser(UserModel user) {
-	// this.user = user;
-	// }
-
 	public String getUuid_user() {
-		return this.uuid_user;
+		return uuid_user;
 	}
 
 	public void setUuid_user(String uuid_user) {
@@ -149,5 +137,22 @@ public class PengajuanSuratModel implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	// @JoinColumn(name = "user_uuid_user", referencedColumnName = "uuid_user")
+	// @OnDelete(action = OnDeleteAction.CASCADE)
+	// @JsonIgnoreS
+	// private UserModel user;
+
+
+
+	// public UserModel getUser() {
+	// return user;
+	// }
+	//
+	// public void setUser(UserModel user) {
+	// this.user = user;
+	// }
+
 
 }

@@ -6,6 +6,7 @@ import com.apap.backend_tu.model.LowonganModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import com.apap.backend_tu.model.PengajuanSuratModel;
@@ -28,4 +29,26 @@ public class PengajuanSuratController {
 		List<PengajuanSuratModel> pengajuanSurat = pengajuanSuratService.getAllPengajuanSurat();
 		return pengajuanSurat;	
 	}
+
+	@PostMapping(value = "/add",consumes= {MimeTypeUtils.APPLICATION_JSON_VALUE})
+	public PengajuanSuratModel addPengajuanSuratSubmit(@RequestBody PengajuanSuratModel pengajuanSurat) {
+		return pengajuanSuratService.addPengajuanSurat(pengajuanSurat);
+	}
+
+	@PostMapping(value = "/update/{id}")
+	public PengajuanSuratModel updatePengajuanSuratSubmit(
+			@RequestBody PengajuanSuratModel pengajuanSurat,
+			@PathVariable long id) {
+		pengajuanSuratService.updatePengajuanSurat(id, pengajuanSurat);
+		PengajuanSuratModel newPengajuan = pengajuanSuratService.getPengajuanSuratById(id);
+		return newPengajuan;
+	}
+
+	@GetMapping(value = "/delete/{id}")
+	private Boolean hapusPengajuan(@PathVariable(value = "id") long id, Model model) {
+		pengajuanSuratService.deletePengajuanSurat(id);
+		return true;
+	}
+
+
 }

@@ -6,4 +6,12 @@ import java.util.List;
 
 public interface PengajuanSuratService {
 	List<PengajuanSuratModel> getAllPengajuanSurat();
+
+	void updatePengajuanSurat(long id, PengajuanSuratModel pustakawan);
+	void deletePengajuanSurat(long id);
+
+	PengajuanSuratModel getPengajuanSuratById(long id);
+
+
+	PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat);
 }
