@@ -30,9 +30,16 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
 	@Override
 	public PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
         Date date = Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");  
+        DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
         String strDate = dateFormat.format(date);  
 		pengajuanSurat.setUuid_user(strDate);
+		pengajuanSurat.setNomor_surat("0");
+
+		if(pengajuanSurat.getTanggal_disetujui()==null) {
+		
+			pengajuanSurat.setTanggal_disetujui(null);
+		}
+
 		pengajuanSuratDb.save(pengajuanSurat);
 		return pengajuanSurat;
 	}

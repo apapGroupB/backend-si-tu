@@ -9,4 +9,5 @@ import com.apap.backend_tu.model.PengajuanSuratModel;
 @Repository
 public interface PengajuanSuratDb extends JpaRepository<PengajuanSuratModel, Long>{
     PengajuanSuratModel findById(long id);
+    PengajuanSuratModel findByketerangan(String keterangan);
 }

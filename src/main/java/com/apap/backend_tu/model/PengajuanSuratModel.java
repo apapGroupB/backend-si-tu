@@ -41,15 +41,15 @@ public class PengajuanSuratModel implements Serializable {
 
 	@NotNull
 	@Size(max = 200)
-	@Column(name = "nomor_surat", nullable = false, unique = true)
+	@Column(name = "nomor_surat", nullable = false)
 	private String nomor_surat;
 	
     @NotNull
     @Column(name = "tanggal_pengajuan", nullable = false)
     private Date tanggal_pengajuan;
     
-    @NotNull
-    @Column(name = "tanggal_disetujui", nullable = false)
+ 
+    @Column(name = "tanggal_disetujui", nullable = true)
     private Date tanggal_disetujui;
 
 	@NotNull
@@ -99,6 +99,7 @@ public class PengajuanSuratModel implements Serializable {
 	}
 
 	public void setTanggal_disetujui(Date tanggal_disetujui) {
+
 		this.tanggal_disetujui = tanggal_disetujui;
 	}
 

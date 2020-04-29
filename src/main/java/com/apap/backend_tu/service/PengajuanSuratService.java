@@ -9,9 +9,6 @@ public interface PengajuanSuratService {
 
 	void updatePengajuanSurat(long id, PengajuanSuratModel pustakawan);
 	void deletePengajuanSurat(long id);
-
 	PengajuanSuratModel getPengajuanSuratById(long id);
-
-
 	PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat);
 }
