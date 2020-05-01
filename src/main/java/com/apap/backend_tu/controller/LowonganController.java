@@ -26,23 +26,6 @@ public class LowonganController {
     @Autowired
     private LowonganService lowonganService;
 
-    @PostMapping(value = "/jenis/add")
-    public JenisLowonganModel addJenisLowonganSubmit(@RequestBody JenisLowonganModel jenisLowongan) {
-        return lowonganService.addJenisLowongan(jenisLowongan);
-    }
-
-    @GetMapping(value = "/jenis/viewall")
-    public List<JenisLowonganModel> jenisLowonganViewAll() {
-        List<JenisLowonganModel> jenisLowongan = lowonganService.getAllJenisLowongan();
-        return jenisLowongan;
-    }
-
-    @DeleteMapping(value = "/jenis/delete/{delId}")
-    public String deleteJenisLowongan(@PathVariable("delId") long id) {
-        lowonganService.removeJenisLowongan(id);
-        return "Jenis lowongan terhapus";
-    }
-
     @PostMapping(value = "/add")
     public LowonganModel addLowonganSubmit(@RequestBody LowonganModel lowongan) {
         return lowonganService.addLowongan(lowongan);

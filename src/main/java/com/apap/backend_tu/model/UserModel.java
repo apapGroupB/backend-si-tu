@@ -51,26 +51,24 @@ public class UserModel implements Serializable {
     @NotNull
     @Column(name = "tanggal_lahir", nullable = false)
     private Date tanggal_lahir;
-    
-	@NotNull
+
 	@Size(max = 200)
 	@Column(name = "alamat", nullable = true)
 	private String alamat;
-	
-	@NotNull
+
 	@Size(max = 200)
 	@Column(name = "telepon", nullable = true)
 	private String telepon;
 	
-	
+
 	@NotNull
 	@Size(max = 200)
-	@Column(name = "username", nullable = true)
+	@Column(name = "username", nullable = false)
 	private String username;
 
 	@NotNull
 	@Size(max = 200)
-	@Column(name = "password", nullable = true)
+	@Column(name = "password", nullable = false)
 	private String password;
 
 	@NotNull
