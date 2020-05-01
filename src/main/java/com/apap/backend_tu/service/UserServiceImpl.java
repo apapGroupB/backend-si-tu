@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         DateFormat tonip = new SimpleDateFormat("yyyyMMdd");
         Date lahir=user.getTanggal_lahir();
         String convert=tonip.format(lahir);
-        String nip="P"+uuid+convert;
+        String nip="P"+convert+uuid;
         
         while(cek!=null) {
         uuid = UUID.randomUUID().toString().replace("-", "");}
