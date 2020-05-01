@@ -10,4 +10,5 @@ import com.apap.backend_tu.model.UserModel;
 @Repository
 public interface UserDb extends JpaRepository<UserModel, Long>{
 	UserModel findByuuid(String uuid);
+//	UserModel existsBy(String uuid);
 }

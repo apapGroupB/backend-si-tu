@@ -30,9 +30,39 @@ public class UserModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 200)
-	@Column(name = "uuid", nullable = true)
+	@Column(name = "uuid", nullable = false)
 	private String uuid;
-
+	
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "nip", nullable = false)
+	private String nip;
+	
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "nama", nullable = false)
+	private String nama;
+	
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "tempat_lahir", nullable = false)
+	private String tempat_lahir;
+	
+    @NotNull
+    @Column(name = "tanggal_lahir", nullable = false)
+    private Date tanggal_lahir;
+    
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "alamat", nullable = true)
+	private String alamat;
+	
+	@NotNull
+	@Size(max = 200)
+	@Column(name = "telepon", nullable = true)
+	private String telepon;
+	
+	
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "username", nullable = true)
@@ -89,6 +119,54 @@ public class UserModel implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getNip() {
+		return nip;
+	}
+
+	public void setNip(String nip) {
+		this.nip = nip;
+	}
+
+	public String getNama() {
+		return nama;
+	}
+
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+
+	public Date getTanggal_lahir() {
+		return tanggal_lahir;
+	}
+
+	public void setTanggal_lahir(Date tanggal_lahir) {
+		this.tanggal_lahir = tanggal_lahir;
+	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+
+	public String getTelepon() {
+		return telepon;
+	}
+
+	public void setTelepon(String telepon) {
+		this.telepon = telepon;
+	}
+
+	public String getTempat_lahir() {
+		return tempat_lahir;
+	}
+
+	public void setTempat_lahir(String tempat_lahir) {
+		this.tempat_lahir = tempat_lahir;
 	}
 
 	// @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

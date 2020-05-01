@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserModel addUser(UserModel user) {
-        Date date = Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
-        String strDate = dateFormat.format(date);
-        user.setUuid(strDate);
+		String uuid = UUID.randomUUID().toString().replace("-", "");
+//        Date date = Calendar.getInstance().getTime();  
+//        DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
+//        String strDate = dateFormat.format(date);
+//        user.setUuid(strDate);
+        UserModel cek=this.getUserByuuid(uuid);
+        DateFormat tonip = new SimpleDateFormat("yyyyMMdd");
+        Date lahir=user.getTanggal_lahir();
+        String convert=tonip.format(lahir);
+        String nip="P"+uuid+convert;
+        
+        while(cek!=null) {
+        uuid = UUID.randomUUID().toString().replace("-", "");}
+        
+        user.setUuid(uuid);
+        user.setNip(nip);
 		return UserDb.save(user);
 	}
 
@@ -54,6 +67,11 @@ public class UserServiceImpl implements UserService {
 		toset.setId_role(user.getId_role());
 		toset.setPassword(user.getPassword());
 		toset.setUsername(user.getUsername());
+		toset.setAlamat(user.getAlamat());
+		toset.setNama(user.getNama());
+		toset.setTanggal_lahir(user.getTanggal_lahir());
+		toset.setTelepon(user.getTelepon());
+		toset.setTempat_lahir(user.getTempat_lahir());
 	}
 
 
