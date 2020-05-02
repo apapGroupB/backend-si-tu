@@ -37,6 +37,7 @@ public class UserController {
 	@PostMapping(value = "/add",consumes= {MimeTypeUtils.APPLICATION_JSON_VALUE})
 	public StatusModel addusermodel(@RequestBody UserModel user) {
 		if(userService.validateUsername(user.getUsername())) {
+			userService.addUser(user);
 			return new StatusModel(true, "data Added to DB", "user_profile");
 		} else {
 			return new StatusModel(false, "Username " + user.getUsername() + " already Exists.", "user_profile");
