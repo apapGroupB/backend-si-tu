@@ -55,8 +55,7 @@ public class LowonganModel implements Serializable {
         this.tanggal_dibuka = tanggal_dibuka;
     }
 
-    @NotNull
-    @Column(name = "tanggal_ditutup", nullable = false)
+    @Column(name = "tanggal_ditutup")
     private Date tanggal_ditutup;
 
     public Date getTanggal_ditutup() {

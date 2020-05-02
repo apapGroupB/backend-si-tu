@@ -2,11 +2,9 @@ package com.apap.backend_tu.controller;
 
 import com.apap.backend_tu.model.JenisLowonganModel;
 import com.apap.backend_tu.service.JenisLowonganService;
-import com.apap.backend_tu.service.LowonganService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -16,7 +14,6 @@ public class JenisLowonganController {
 
     @Autowired
     private JenisLowonganService jenisLowonganService;
-
 
     @PostMapping(value = "/jenis/add")
     public JenisLowonganModel addJenisLowonganSubmit(@RequestBody JenisLowonganModel jenisLowongan) {
