@@ -10,7 +10,8 @@ import java.util.List;
 public interface PinjamanService {
     List<PinjamanModel> getAllPinjaman();
     PinjamanModel addPinjaman(PinjamanModel jenisSurat);
-    void deletePengajuanSurat(long id);
+    void deletePinjaman(long id);
 	PinjamanModel getPinjamanByid(long id);
-	void updatePinjaman(String uuid, UserModel user);
+	void updatePinjaman(long id, PinjamanModel pinjaman);
+	
 }

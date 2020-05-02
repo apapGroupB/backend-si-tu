@@ -30,10 +30,10 @@ public class UserServiceImpl implements UserService {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
         UserModel cek=this.getUserByuuid(uuid);
         String uname=user.getUsername();
-        UserModel validation=this.getUserByusername(uname);
-        if(validation!=null) {
-            return null;
-        }
+//        UserModel validation=this.getUserByusername(uname);
+//        if(validation!=null) {
+//            return null;
+//        }
         DateFormat tonip = new SimpleDateFormat("yyyyMMdd");
         Date lahir=user.getTanggal_lahir();
         String convert=tonip.format(lahir);

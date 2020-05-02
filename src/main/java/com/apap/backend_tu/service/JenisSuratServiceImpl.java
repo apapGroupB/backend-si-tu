@@ -3,12 +3,15 @@ package com.apap.backend_tu.service;
 import java.util.List;
 
 import com.apap.backend_tu.model.PengajuanSuratModel;
+import com.apap.backend_tu.model.UserModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.backend_tu.model.JenisSuratModel;
 import com.apap.backend_tu.repository.JenisSuratDb;
+import com.apap.backend_tu.repository.UserDb;
 
 
 @Service
@@ -43,6 +46,17 @@ public class JenisSuratServiceImpl implements JenisSuratService {
 
 	public void deleteJenisSurat(long id) {
 		jenisSuratDb.delete(this.getJenisSuratById(id));
+	}
+
+
+	@Override
+	public boolean validatenama(String nama) {
+		List<JenisSuratModel> users = jenisSuratDb.validatenama(nama);
+		if(users.size() > 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

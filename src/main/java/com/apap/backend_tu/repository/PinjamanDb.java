@@ -9,4 +9,6 @@ import com.apap.backend_tu.model.PinjamanModel;
 @Repository
 public interface PinjamanDb extends JpaRepository<PinjamanModel, Long>{
     PinjamanModel findById(long id);
+    
+    
 }

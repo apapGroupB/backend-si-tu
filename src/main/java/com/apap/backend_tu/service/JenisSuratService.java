@@ -11,4 +11,5 @@ public interface JenisSuratService {
 	void deleteJenisSurat(long id);
 	JenisSuratModel getJenisSuratById(long id);
 	JenisSuratModel addJenisSurat(JenisSuratModel jenisSurat);
+	boolean validatenama(String username);
 }

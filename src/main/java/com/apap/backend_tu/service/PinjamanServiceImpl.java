@@ -33,14 +33,19 @@ public class PinjamanServiceImpl implements PinjamanService {
 
 
 	@Override
-	public void deletePengajuanSurat(long id) {
+	public void deletePinjaman(long id) {
 		pinjamanDb.delete(this.getPinjamanByid(id));}
 
 
 	@Override
-	public void updatePinjaman(String uuid, UserModel user) {
-		// TODO Auto-generated method stub
-		
+	public void updatePinjaman(long id, PinjamanModel pinjaman) {
+		PinjamanModel pinjam=this.getPinjamanByid(id);
+		pinjam.setJumlah_pengembalian(pinjaman.getJumlah_pengembalian());
+		pinjam.setJumlah_pinjaman(pinjaman.getJumlah_pinjaman());
+		pinjam.setStatus(pinjaman.getStatus());
+		pinjam.setTanggal_disetujui(pinjaman.getTanggal_disetujui());
+		pinjam.setTanggal_pengajuan(pinjaman.getTanggal_disetujui());
+		pinjam.setTanggal_pengembalian(pinjaman.getTanggal_pengembalian());
 	}
 	
 }
