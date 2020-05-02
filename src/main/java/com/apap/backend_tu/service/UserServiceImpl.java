@@ -28,10 +28,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserModel addUser(UserModel user) {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
-//        Date date = Calendar.getInstance().getTime();  
-//        DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
-//        String strDate = dateFormat.format(date);
-//        user.setUuid(strDate);
         UserModel cek=this.getUserByuuid(uuid);
         String uname=user.getUsername();
         UserModel validation=this.getUserByusername(uname);
@@ -87,8 +83,13 @@ public class UserServiceImpl implements UserService {
 		return UserDb.findByusername(username);
 	}
 
-
-
-
-
+	@Override
+	public boolean validateUsername(String username) {
+		List<UserModel> users = UserDb.validateUsername(username);
+		if(users.size() > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

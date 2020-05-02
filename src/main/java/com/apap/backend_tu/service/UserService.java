@@ -12,5 +12,6 @@ public interface UserService {
 	UserModel getUserByuuid(String uuid);
 	UserModel getUserByusername(String username);
 	void updateUser(String uuid, UserModel user);
+	boolean validateUsername(String username);
 
 }

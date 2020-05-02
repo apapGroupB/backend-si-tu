@@ -2,7 +2,9 @@ package com.apap.backend_tu.controller;
 
 import java.util.List;
 
+import com.apap.backend_tu.model.StatusModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
@@ -33,8 +35,13 @@ public class UserController {
 		return user;}
 	
 	@PostMapping(value = "/add",consumes= {MimeTypeUtils.APPLICATION_JSON_VALUE})
-	public UserModel addusermodel(@RequestBody UserModel user) {
-		return userService.addUser(user);}
+	public StatusModel addusermodel(@RequestBody UserModel user) {
+		if(userService.validateUsername(user.getUsername())) {
+			return new StatusModel(true, "data Added to DB", "user_profile");
+		} else {
+			return new StatusModel(false, "Username " + user.getUsername() + " already Exists.", "user_profile");
+		}
+	}
 	
 	@GetMapping(value = "/delete/{uuid}")
 	private Boolean hapusUser(@PathVariable(value = "uuid") String uuid, Model model) {
