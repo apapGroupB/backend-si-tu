@@ -46,7 +46,7 @@ public class UserController {
 			@RequestBody UserModel user,
 			@PathVariable String uuid) {
 		userService.updateUser(uuid, user);
-		UserModel newUser = userService.addUser(user);
+		UserModel newUser = userService.getUserByuuid(uuid);
 		return newUser;
 	}
 	

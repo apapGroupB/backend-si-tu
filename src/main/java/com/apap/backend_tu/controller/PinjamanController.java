@@ -18,11 +18,11 @@ public class PinjamanController {
     @GetMapping(value= "/viewall")
     public List<PinjamanModel> viewAllJenisSurat(Model m) {
         List<PinjamanModel> pinjaman = pinjamanService.getAllPinjaman();
-        return pinjaman;
-    }
+        return pinjaman;}
 
     @PostMapping(value = "/add")
     public PinjamanModel addJenisSurat(@RequestBody PinjamanModel pinjaman) {
-        return pinjamanService.addPinjaman(pinjaman);
-    }
+        return pinjamanService.addPinjaman(pinjaman);}
+    
+    
 }

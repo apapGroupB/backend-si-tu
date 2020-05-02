@@ -10,6 +10,7 @@ public interface UserService {
 	void deletePengajuanSurat(String uuid);
 	UserModel addUser(UserModel user);
 	UserModel getUserByuuid(String uuid);
+	UserModel getUserByusername(String username);
 	void updateUser(String uuid, UserModel user);
 
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,11 @@ public class UserServiceImpl implements UserService {
 //        String strDate = dateFormat.format(date);
 //        user.setUuid(strDate);
         UserModel cek=this.getUserByuuid(uuid);
+        String uname=user.getUsername();
+        UserModel validation=this.getUserByusername(uname);
+        if(validation!=null) {
+            return null;
+        }
         DateFormat tonip = new SimpleDateFormat("yyyyMMdd");
         Date lahir=user.getTanggal_lahir();
         String convert=tonip.format(lahir);
@@ -72,6 +79,12 @@ public class UserServiceImpl implements UserService {
 		toset.setTanggal_lahir(user.getTanggal_lahir());
 		toset.setTelepon(user.getTelepon());
 		toset.setTempat_lahir(user.getTempat_lahir());
+	}
+
+	@Override
+	public UserModel getUserByusername(String username) {
+		// TODO Auto-generated method stub
+		return UserDb.findByusername(username);
 	}
 
 
