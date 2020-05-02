@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.apap.backend_tu.model.JenisSuratModel;
-import com.apap.backend_tu.model.UserModel;
-
 
 @Repository
-public interface JenisSuratDb extends JpaRepository<JenisSuratModel, Long>{
-    JenisSuratModel findById(long id);
+public interface JenisSuratDb extends JpaRepository<JenisSuratModel, Long> {
+	JenisSuratModel findById(long id);
+
 	@Query(value = "SELECT * FROM jenis_surat WHERE nama = ?1", nativeQuery = true)
 	public ArrayList<JenisSuratModel> validatenama(String username);
 }

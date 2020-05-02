@@ -34,7 +34,6 @@ public class PinjamanModel {
     @Column(name = "tanggal_disetujui", nullable = true)
     private Date tanggal_disetujui;
 
-
     public long getId() {
         return this.id;
     }
@@ -63,8 +62,6 @@ public class PinjamanModel {
         return this.tanggal_disetujui;
     }
 
-
-
     public void setId(long id) {
         this.id = id;
     }
@@ -92,5 +89,8 @@ public class PinjamanModel {
     public void setTanggal_disetujui(Date tanggal_disetujui) {
         this.tanggal_disetujui = tanggal_disetujui;
     }
-}
 
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+}

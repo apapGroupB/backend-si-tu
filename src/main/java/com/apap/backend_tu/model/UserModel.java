@@ -2,16 +2,12 @@ package com.apap.backend_tu.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,35 +18,35 @@ public class UserModel implements Serializable {
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "uuid", nullable = false)
 	private String uuid;
-	
+
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "nip", nullable = false)
 	private String nip;
-	
+
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "nama", nullable = false)
 	private String nama;
-	
+
 	@NotNull
 	@Size(max = 200)
 	@Column(name = "tempat_lahir", nullable = false)
 	private String tempat_lahir;
-	
-    @NotNull
-    @Column(name = "tanggal_lahir", nullable = false)
-    private Date tanggal_lahir;
+
+	@NotNull
+	@Column(name = "tanggal_lahir", nullable = false)
+	private Date tanggal_lahir;
 
 	@Size(max = 200)
 	@Column(name = "alamat", nullable = true)
@@ -59,7 +55,6 @@ public class UserModel implements Serializable {
 	@Size(max = 200)
 	@Column(name = "telepon", nullable = true)
 	private String telepon;
-	
 
 	@NotNull
 	@Size(max = 200)
@@ -171,8 +166,6 @@ public class UserModel implements Serializable {
 	// private List<PengajuanSuratModel> listPengajuanSurat = new
 	// ArrayList<PengajuanSuratModel>();
 
-
-
 	// public List<PengajuanSuratModel> getListPengajuanSurat() {
 	// return listPengajuanSurat;
 	// }
@@ -181,7 +174,5 @@ public class UserModel implements Serializable {
 	// listPengajuanSurat) {
 	// this.listPengajuanSurat = listPengajuanSurat;
 	// }
-
-
 
 }

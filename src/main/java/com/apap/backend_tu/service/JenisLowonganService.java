@@ -10,4 +10,6 @@ public interface JenisLowonganService {
 
     void removeJenisLowongan(long id);
 
+    int validateByNama(JenisLowonganModel jenisLowongan);
+
 }

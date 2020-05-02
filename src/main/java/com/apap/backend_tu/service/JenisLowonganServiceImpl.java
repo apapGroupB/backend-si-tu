@@ -10,11 +10,10 @@ import java.util.List;
 
 @Service
 @Transactional
-public class JenisLowonganServiceImpl implements JenisLowonganService{
+public class JenisLowonganServiceImpl implements JenisLowonganService {
 
     @Autowired
     private JenisLowonganDb jenisLowonganDb;
-
 
     @Override
     public JenisLowonganModel addJenisLowongan(JenisLowonganModel jenisLowongan) {
@@ -30,6 +29,17 @@ public class JenisLowonganServiceImpl implements JenisLowonganService{
     @Override
     public List<JenisLowonganModel> getAllJenisLowongan() {
         return jenisLowonganDb.findAll();
+    }
+
+    // @Override
+    // public JenisLowonganModel getByNama(String nama) {
+    // return jenisLowonganDb.findByNama(nama);
+    // }
+
+    @Override
+    public int validateByNama(JenisLowonganModel jenisLowongan) {
+        JenisLowonganModel dataJenisLowongan = jenisLowonganDb.findByNama(jenisLowongan.getNama());
+        return dataJenisLowongan == null ? 0 : 1;
     }
 
 }
