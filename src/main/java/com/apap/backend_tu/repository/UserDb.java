@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public interface UserDb extends JpaRepository<UserModel, Long> {
 	UserModel findByuuid(String uuid);
 
-	UserModel findByusername(String username);
+	UserModel findByUsername(String username);
 	// UserModel existsBy(String uuid);
 
 	@Query(value = "SELECT * FROM user_profile WHERE username = ?1", nativeQuery = true)
