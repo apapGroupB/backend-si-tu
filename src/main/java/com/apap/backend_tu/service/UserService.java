@@ -13,5 +13,6 @@ public interface UserService {
 	UserModel getUserByusername(String username);
 	void updateUser(String uuid, UserModel user);
 	boolean validateUsername(String username);
+	public String encrypt(String password);
 
 }

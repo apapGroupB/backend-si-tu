@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,7 +38,8 @@ public class UserServiceImpl implements UserService {
 		while (cek != null) {
 			uuid = UUID.randomUUID().toString().replace("-", "");
 		}
-
+        String pass = encrypt(user.getPassword());
+        user.setPassword(pass);
 		user.setUuid(uuid);
 		user.setNip(nip);
 		return UserDb.save(user);
@@ -85,7 +87,12 @@ public class UserServiceImpl implements UserService {
 		if (users.size() > 0) {
 			return false;
 		} else {
-			return true;
-		}
-	}
+			return true;}}
+	
+    @Override
+    public String encrypt(String password){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+        return hashedPassword;
+    }
 }
