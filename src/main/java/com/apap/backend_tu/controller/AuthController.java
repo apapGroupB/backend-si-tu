@@ -3,6 +3,8 @@ package com.apap.backend_tu.controller;
 import java.util.Objects;
 
 import com.apap.backend_tu.model.AuthRequestModel;
+import com.apap.backend_tu.model.UserModel;
+import com.apap.backend_tu.repository.UserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,6 +36,9 @@ public class AuthController {
     @Autowired
     private AuthService userDetailsService;
 
+    @Autowired
+    private UserDb userDb;
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequestModel authenticationRequest) throws Exception {
 
@@ -43,8 +48,9 @@ public class AuthController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
+        UserModel userAuth = userDb.findByUsername(authenticationRequest.getUsername());
 
-        return ResponseEntity.ok(new AuthResponseModel(token));
+        return ResponseEntity.ok(new AuthResponseModel(token, userAuth.getNama(), userAuth.getUsername(), userAuth.getId_role()));
     }
 
     private void authenticate(String username, String password) throws Exception {
