@@ -24,6 +24,7 @@ import com.apap.backend_tu.service.AuthService;
 
 
 @RestController
+
 @CrossOrigin(origins = "*")
 public class AuthController {
 
