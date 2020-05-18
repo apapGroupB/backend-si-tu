@@ -1,5 +1,6 @@
 package com.apap.backend_tu.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.apap.backend_tu.model.StatusModel;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.apap.backend_tu.model.UserModel;
 import com.apap.backend_tu.service.UserService;
@@ -24,6 +26,15 @@ import com.apap.backend_tu.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@GetMapping("/test")
+	public String gettest(){
+		String url= "https://webservice-situ.free.beeceptor.com/perpustakaan/user/viewall";
+		String objects = restTemplate.getForObject(url, String.class);
+		return objects;
+	} 
 
 	@GetMapping(value = "/viewall")
 	public List<UserModel> viewAlluser(Model m) {
