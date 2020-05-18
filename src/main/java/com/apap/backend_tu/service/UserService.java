@@ -2,9 +2,7 @@ package com.apap.backend_tu.service;
 
 import java.util.List;
 
-import com.apap.backend_tu.model.PinjamanModel;
 import com.apap.backend_tu.model.UserModel;
-import com.apap.backend_tu.model.UserModel2;
 
 public interface UserService {
 	List<UserModel> getAlluser();

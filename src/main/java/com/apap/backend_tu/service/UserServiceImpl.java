@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.backend_tu.model.UserModel;
 import com.apap.backend_tu.repository.UserDb;
-import com.apap.backend_tu.repository.UserDb2;
 
 @Service
 @Transactional
@@ -21,9 +20,6 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDb UserDb;
-	
-	@Autowired
-	private UserDb2 UserDb2;
 
 	@Override
 	public UserModel addUser(UserModel user) {
@@ -45,7 +41,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(pass);
 		user.setUuid(uuid);
 		user.setNip(nip);
-		UserDb2.insertuser_profile2(user.getNama(), user.getAlamat());
 		return UserDb.save(user);
 	}
 
