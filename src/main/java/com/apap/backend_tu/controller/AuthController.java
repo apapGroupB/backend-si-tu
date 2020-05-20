@@ -51,7 +51,7 @@ public class AuthController {
         final String token = jwtTokenUtil.generateToken(userDetails);
         UserModel userAuth = userDb.findByUsername(authenticationRequest.getUsername());
 
-        return ResponseEntity.ok(new AuthResponseModel(token, userAuth.getNama(), userAuth.getUsername(), userAuth.getId_role()));
+        return ResponseEntity.ok(new AuthResponseModel(token, userAuth.getNama(), userAuth.getUsername(), userAuth.getId_role(), userAuth.getUuid()));
     }
 
     private void authenticate(String username, String password) throws Exception {
