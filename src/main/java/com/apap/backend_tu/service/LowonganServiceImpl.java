@@ -45,4 +45,8 @@ public class LowonganServiceImpl implements LowonganService {
         dataLowongan.setUuid_user(lowongan.getUuid_user());
     }
 
+    public void deleteLowongan(long id) {
+        lowonganDb.delete(this.getLowonganById(id));
+    }
+
 }

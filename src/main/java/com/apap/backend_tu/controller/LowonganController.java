@@ -8,6 +8,7 @@ import com.apap.backend_tu.model.RestUserModel;
 import com.apap.backend_tu.service.LowonganService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,5 +51,11 @@ public class LowonganController {
         lowonganService.updateLowongan(id, lowongan);
         LowonganModel newLowongan = lowonganService.getLowonganById(id);
         return newLowongan;
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    private Boolean hapusLowongan(@PathVariable(value = "id") long id, Model model) {
+        lowonganService.deleteLowongan(id);
+        return true;
     }
 }
