@@ -43,15 +43,12 @@ public class LowonganController {
         RestTemplate restTemplate = new RestTemplate();
         List<RestUserModel> result = restTemplate.getForObject(uri, List.class);
         return result;
-}
-
-    @PutMapping(value = "update/{upId}")
-    public String updateLowonganSubmit(@PathVariable(value = "upId") long upId, @RequestParam("judul") String judul,
-            @RequestParam("tanggal_dibuka") Date tanggal_dibuka, @RequestParam("tanggal_ditutup") Date tanggal_ditutup,
-            @RequestParam("keterangan") String keterangan, @RequestParam("jumlah") int jumlah,
-            @RequestParam("id_jenis_lowongan") int id_jenis_lowongan, @RequestParam("uuid_user") String uuid_user) {
-
-        return null;
     }
 
+    @PutMapping(value = "update/{id}")
+    public LowonganModel updateLowonganSubmit(@PathVariable long id, @RequestBody LowonganModel lowongan) {
+        lowonganService.updateLowongan(id, lowongan);
+        LowonganModel newLowongan = lowonganService.getLowonganById(id);
+        return newLowongan;
+    }
 }

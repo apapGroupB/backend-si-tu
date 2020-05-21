@@ -29,8 +29,13 @@ public class LowonganServiceImpl implements LowonganService {
     }
 
     @Override
-    public void updateLowongan(LowonganModel lowongan) {
-        LowonganModel dataLowongan = lowonganDb.getOne(lowongan.getId());
+    public LowonganModel getLowonganById(long id) {
+        return lowonganDb.findById(id);
+    }
+
+    @Override
+    public void updateLowongan(long id, LowonganModel lowongan) {
+        LowonganModel dataLowongan = this.getLowonganById(id);
         dataLowongan.setJudul(lowongan.getJudul());
         dataLowongan.setTanggal_dibuka(lowongan.getTanggal_dibuka());
         dataLowongan.setTanggal_ditutup(lowongan.getTanggal_ditutup());

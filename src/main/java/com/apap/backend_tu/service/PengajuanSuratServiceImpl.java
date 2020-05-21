@@ -54,7 +54,6 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
 		pengajuanSurat.setStatus(pengajuanSuratData.getStatus());
 		pengajuanSurat.setTanggal_disetujui(pengajuanSuratData.getTanggal_disetujui());
 		pengajuanSurat.setTanggal_pengajuan(pengajuanSuratData.getTanggal_pengajuan());
-
 	}
 
 	public void deletePengajuanSurat(long id) {
