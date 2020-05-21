@@ -25,11 +25,6 @@ public class UserServiceImpl implements UserService {
 	public UserModel addUser(UserModel user) {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		UserModel cek = this.getUserByuuid(uuid);
-		// String uname = user.getUsername();
-		// UserModel validation=this.getUserByusername(uname);
-		// if(validation!=null) {
-		// return null;
-		// }
 		DateFormat tonip = new SimpleDateFormat("yyyyMMdd");
 		Date lahir = user.getTanggal_lahir();
 		String convert = tonip.format(lahir);
@@ -52,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserModel> getAlluser() {
-		// TODO Auto-generated method stub
+
 		return UserDb.findAll();
 	}
 
@@ -65,8 +60,6 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(String uuid, UserModel user) {
 		UserModel toset = this.getUserByuuid(uuid);
 		toset.setId_role(user.getId_role());
-		toset.setPassword(user.getPassword());
-		toset.setUsername(user.getUsername());
 		toset.setAlamat(user.getAlamat());
 		toset.setNama(user.getNama());
 		toset.setTanggal_lahir(user.getTanggal_lahir());
