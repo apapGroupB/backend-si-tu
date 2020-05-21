@@ -45,7 +45,7 @@ public class LowonganController {
         return result;
     }
 
-    @PutMapping(value = "update/{id}")
+    @PostMapping(value = "update/{id}")
     public LowonganModel updateLowonganSubmit(@PathVariable long id, @RequestBody LowonganModel lowongan) {
         lowonganService.updateLowongan(id, lowongan);
         LowonganModel newLowongan = lowonganService.getLowonganById(id);
