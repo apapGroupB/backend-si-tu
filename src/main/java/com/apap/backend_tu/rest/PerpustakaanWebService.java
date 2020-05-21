@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/perpustakaan")
+@RequestMapping("/webservice")
 @CrossOrigin(origins = "*")
 public class PerpustakaanWebService {
 
@@ -22,6 +22,4 @@ public class PerpustakaanWebService {
         List<RestUserModel> result = restTemplate.getForObject(uri, List.class);
         return result;
     }
-
-
 }

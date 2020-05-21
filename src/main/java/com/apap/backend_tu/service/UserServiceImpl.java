@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.apap.backend_tu.model.SivitasGuruModel;
+import com.apap.backend_tu.model.SivitasPegawaiModel;
+import com.apap.backend_tu.model.SivitasSiswaModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.backend_tu.model.UserModel;
 import com.apap.backend_tu.repository.UserDb;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @Transactional
@@ -21,14 +25,42 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDb UserDb;
 
+	private static boolean addUserSivitas(UserModel user)
+	{
+		final String uri = "http://si-sivitas.herokuapp.com/api";
+		RestTemplate restTemplate = new RestTemplate();
+		if(user.getId_role() == 3) {
+			SivitasGuruModel newGuru = new SivitasGuruModel(user);
+			SivitasGuruModel result = restTemplate.postForObject( (uri+"/teachers"), newGuru, SivitasGuruModel.class);
+			return true;
+		} else if(user.getId_role() == 4) {
+			SivitasSiswaModel newSiswa = new SivitasSiswaModel(user);
+			SivitasSiswaModel result = restTemplate.postForObject((uri+"/students"), newSiswa, SivitasSiswaModel.class);
+			return true;
+		} else {
+			SivitasPegawaiModel newPegawai = new SivitasPegawaiModel(user);
+//			System.out.println("HEYOOW CEK: " + newPegawai.getIdUser());
+//			System.out.println("HEYOOW CEK1: " + newPegawai.getNip());
+//			System.out.println("HEYOOW CEK2: " + newPegawai.getNama());
+//			System.out.println("HEYOOW CEK3: " + newPegawai.getTanggalLahir());
+//			System.out.println("HEYOOW CEK4: " + newPegawai.getTempatLahir());
+//			System.out.println("HEYOOW CEK5: " + newPegawai.getAlamat());
+//			System.out.println("HEYOOW CEK6: " + newPegawai.getTelepon());
+			System.out.println("PATHH: " + uri+"/employees");
+			System.out.println("PEGAWAI: " + newPegawai);
+			SivitasPegawaiModel result = restTemplate.postForObject((uri+"/employees"), newPegawai, SivitasPegawaiModel.class);
+			return true;
+		}
+	}
+
 	@Override
 	public UserModel addUser(UserModel user) {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		UserModel cek = this.getUserByuuid(uuid);
-		DateFormat tonip = new SimpleDateFormat("yyyyMMdd");
+		DateFormat tonip = new SimpleDateFormat("ddMMyyyy");
 		Date lahir = user.getTanggal_lahir();
 		String convert = tonip.format(lahir);
-		String nip = "P" + convert + uuid;
+		String nip = (user.getId_role() == 3 ? "G" : user.getId_role() == 4 ? "S" : "P") + convert + uuid;
 
 		while (cek != null) {
 			uuid = UUID.randomUUID().toString().replace("-", "");}
@@ -36,6 +68,8 @@ public class UserServiceImpl implements UserService {
         user.setPassword(pass);
 		user.setUuid(uuid);
 		user.setNip(nip);
+
+		addUserSivitas(user);
 		return UserDb.save(user);
 	}
 
@@ -47,7 +81,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserModel> getAlluser() {
-
 		return UserDb.findAll();
 	}
 
@@ -69,7 +102,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserModel getUserByusername(String username) {
-		// TODO Auto-generated method stub
 		return UserDb.findByUsername(username);
 	}
 
