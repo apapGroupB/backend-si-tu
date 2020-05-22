@@ -13,5 +13,6 @@ public interface LowonganService {
 
 //    LowonganModel getLowonganByUuid(String uuid);
     LowonganModel getLowonganById(long id);
+    ArrayList<LowonganModel> validaLowonganPerpus();
 
 }
