@@ -1,10 +1,11 @@
 package com.apap.backend_tu.controller;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.apap.backend_tu.model.LowonganModel;
 import com.apap.backend_tu.model.RestUserModel;
+import com.apap.backend_tu.rest.PerpustakaanWebService;
 import com.apap.backend_tu.service.LowonganService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/lowongan")
 @CrossOrigin(origins = "*")
 public class LowonganController {
+
+    @Autowired
+    private PerpustakaanWebService perpustakaanWebService;
 
     @Autowired
     private LowonganService lowonganService;
@@ -35,6 +38,12 @@ public class LowonganController {
     @GetMapping(value = "/viewall")
     public List<LowonganModel> lowonganViewAll() {
         List<LowonganModel> lowongan = lowonganService.getAllLowongan();
+        RestUserModel userRequired = perpustakaanWebService.getTotalUserPustakawan();
+        if(userRequired.getTotal() < 5) {
+
+            LowonganModel newLowongan = new LowonganModel(5 - userRequired.getTotal());
+            lowonganService.addLowongan(newLowongan);
+        }
         return lowongan;
     }
 

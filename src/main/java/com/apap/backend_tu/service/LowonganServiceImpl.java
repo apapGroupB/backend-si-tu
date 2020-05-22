@@ -1,5 +1,6 @@
 package com.apap.backend_tu.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -22,6 +23,11 @@ public class LowonganServiceImpl implements LowonganService {
         lowonganDb.save(lowongan);
         return lowongan;
     }
+
+//    @Override
+//    public LowonganModel getLowonganByUuid(String uuid) {
+//        return lowonganDb.findByUuid_user(uuid);
+//    }
 
     @Override
     public List<LowonganModel> getAllLowongan() {
