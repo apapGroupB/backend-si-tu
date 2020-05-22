@@ -31,7 +31,7 @@ public class SivitasGuruModel {
         this.nig = user.getNip();
         this.nama = user.getNama();
         this.tempatLahir = user.getTempat_lahir();
-        this.tanggalLahir = convertDateToString(user.getTanggal_lahir());
+        this.tanggalLahir =convertDateToString(user.getTanggal_lahir());
         this.alamat = user.getAlamat();
         this.telepon = user.getTelepon();
     }

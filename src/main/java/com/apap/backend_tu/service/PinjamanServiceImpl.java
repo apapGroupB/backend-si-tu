@@ -1,17 +1,29 @@
 package com.apap.backend_tu.service;
 
 import java.util.List;
+
+import com.apap.backend_tu.model.KoperasiPinjamanModel;
 import com.apap.backend_tu.model.PinjamanModel;
+import com.apap.backend_tu.model.SivitasSiswaModel;
+import com.apap.backend_tu.model.UserModel;
 import com.apap.backend_tu.repository.PinjamanDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @Transactional
 public class PinjamanServiceImpl implements PinjamanService {
 	@Autowired
 	private PinjamanDb pinjamanDb;
+	
+	private static boolean addPinjamanKoperasi(PinjamanModel pinjaman) {
+		final String url = "http://si-sivitas.herokuapp.com/api";
+		RestTemplate restTemplate = new RestTemplate();
+		KoperasiPinjamanModel koperasi = new KoperasiPinjamanModel(pinjaman);
+		KoperasiPinjamanModel result = restTemplate.postForObject((url), koperasi, KoperasiPinjamanModel.class);
+		return true;}
 
 	@Override
 	public List<PinjamanModel> getAllPinjaman() {
@@ -20,6 +32,7 @@ public class PinjamanServiceImpl implements PinjamanService {
 
 	@Override
 	public PinjamanModel addPinjaman(PinjamanModel pinjaman) {
+		addPinjamanKoperasi(pinjaman);
 		pinjamanDb.save(pinjaman);
 		return pinjaman;
 	}
