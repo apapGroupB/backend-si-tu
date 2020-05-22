@@ -30,6 +30,9 @@ public class LowonganServiceImpl implements LowonganService {
 //    }
 
     @Override
+    public ArrayList<LowonganModel> validaLowonganPerpus() { return lowonganDb.validaLowonganPerpus(); }
+
+    @Override
     public List<LowonganModel> getAllLowongan() {
         return lowonganDb.findAll();
     }

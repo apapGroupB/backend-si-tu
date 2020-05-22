@@ -38,11 +38,12 @@ public class LowonganController {
     @GetMapping(value = "/viewall")
     public List<LowonganModel> lowonganViewAll() {
         List<LowonganModel> lowongan = lowonganService.getAllLowongan();
-        RestUserModel userRequired = perpustakaanWebService.getTotalUserPustakawan();
-        if(userRequired.getTotal() < 5) {
-
-            LowonganModel newLowongan = new LowonganModel(5 - userRequired.getTotal());
-            lowonganService.addLowongan(newLowongan);
+        if(lowonganService.validaLowonganPerpus().size() == 0) {
+            RestUserModel userRequired = perpustakaanWebService.getTotalUserPustakawan();
+            if(userRequired.getTotal() < 5) {
+                LowonganModel newLowongan = new LowonganModel(5 - userRequired.getTotal());
+                lowonganService.addLowongan(newLowongan);
+            }
         }
         return lowongan;
     }
