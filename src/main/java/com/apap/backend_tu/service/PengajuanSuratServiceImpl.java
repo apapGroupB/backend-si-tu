@@ -30,7 +30,8 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
 //		DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
 //		String strDate = dateFormat.format(date);
 //		pengajuanSurat.setUuid_user(strDate);
-		pengajuanSurat.setNomor_surat("0");
+//		if()
+//		pengajuanSurat.setNomor_surat("0");
 
 //		if (pengajuanSurat.getTanggal_disetujui() == null) {
 //			pengajuanSurat.setTanggal_disetujui(null);
