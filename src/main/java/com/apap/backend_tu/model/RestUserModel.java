@@ -1,19 +1,31 @@
 package com.apap.backend_tu.model;
 
-public class RestUserModel {
-    private String userName;
-    private int id_role;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.springframework.http.ResponseEntity;
 
-    public RestUserModel(String userName, int id_role){
-        this.userName = userName;
-        this.id_role = id_role;
+public class RestUserModel {
+    private int id_role;
+    private int total;
+
+    public RestUserModel () {
     }
 
-    public String getUserName() {
-        return userName;
+    public RestUserModel(int id_role, int total){
+        this.id_role = id_role;
+        this.total = total;
+    }
+
+    public int getTotal() {
+        return this.total;
     }
 
     public int getId_role() {
-        return id_role;
+        return this.id_role;
+    }
+
+    public String toString() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(this);
     }
 }
