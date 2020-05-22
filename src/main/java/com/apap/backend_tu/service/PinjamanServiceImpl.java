@@ -19,7 +19,7 @@ public class PinjamanServiceImpl implements PinjamanService {
 	private PinjamanDb pinjamanDb;
 	
 	private static boolean addPinjamanKoperasi(PinjamanModel pinjaman) {
-		final String url = "http://si-sivitas.herokuapp.com/api";
+		final String url = "https://webservice-situ.free.beeceptor.com/koperasi/pengajuan-pinjaman";
 		RestTemplate restTemplate = new RestTemplate();
 		KoperasiPinjamanModel koperasi = new KoperasiPinjamanModel(pinjaman);
 		KoperasiPinjamanModel result = restTemplate.postForObject((url), koperasi, KoperasiPinjamanModel.class);
