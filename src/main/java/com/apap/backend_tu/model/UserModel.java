@@ -1,5 +1,8 @@
 package com.apap.backend_tu.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -160,6 +163,11 @@ public class UserModel implements Serializable {
 
 	public void setTempat_lahir(String tempat_lahir) {
 		this.tempat_lahir = tempat_lahir;
+	}
+
+	public String toString() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return gson.toJson(this);
 	}
 
 	// @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

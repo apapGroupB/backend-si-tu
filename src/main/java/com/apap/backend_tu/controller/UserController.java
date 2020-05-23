@@ -54,7 +54,7 @@ public class UserController {
 
 	@GetMapping(value = "/delete/{uuid}")
 	private Boolean hapusUser(@PathVariable(value = "uuid") String uuid, Model model) {
-		userService.deletePengajuanSurat(uuid);
+		userService.deleteUser(uuid);
 		return true;
 	}
 

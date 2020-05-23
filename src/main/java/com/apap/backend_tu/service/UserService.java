@@ -6,13 +6,11 @@ import com.apap.backend_tu.model.UserModel;
 
 public interface UserService {
 	List<UserModel> getAlluser();
-	void deletePengajuanSurat(String uuid);
+	void deleteUser(String uuid);
 	UserModel addUser(UserModel user);
 	UserModel getUserByuuid(String uuid);
 	UserModel getUserByusername(String username);
-	void updateUser(String uuid, UserModel user);
+	boolean updateUser(String uuid, UserModel user);
 	boolean validateUsername(String username);
 	public String encrypt(String password);
-
-	
 }

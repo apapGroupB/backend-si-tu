@@ -2,9 +2,7 @@
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import com.apap.backend_tu.model.SivitasGuruModel;
 import com.apap.backend_tu.model.SivitasPegawaiModel;
@@ -39,16 +37,28 @@ public class UserServiceImpl implements UserService {
 			return true;
 		} else {
 			SivitasPegawaiModel newPegawai = new SivitasPegawaiModel(user);
-//			System.out.println("HEYOOW CEK: " + newPegawai.getIdUser());
-//			System.out.println("HEYOOW CEK1: " + newPegawai.getNip());
-//			System.out.println("HEYOOW CEK2: " + newPegawai.getNama());
-//			System.out.println("HEYOOW CEK3: " + newPegawai.getTanggalLahir());
-//			System.out.println("HEYOOW CEK4: " + newPegawai.getTempatLahir());
-//			System.out.println("HEYOOW CEK5: " + newPegawai.getAlamat());
-//			System.out.println("HEYOOW CEK6: " + newPegawai.getTelepon());
-			System.out.println("PATHH: " + uri+"/employees");
-			System.out.println("PEGAWAI: " + newPegawai);
 			SivitasPegawaiModel result = restTemplate.postForObject((uri+"/employees"), newPegawai, SivitasPegawaiModel.class);
+			return true;
+		}
+	}
+
+	private static boolean updateUserSivitas(UserModel user)
+	{
+		final String uri = "http://si-sivitas.herokuapp.com/api";
+		RestTemplate restTemplate = new RestTemplate();
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("uuid", user.getUuid());
+		if(user.getId_role() == 3) {
+			SivitasGuruModel newGuru = new SivitasGuruModel(user);
+			restTemplate.put((uri+"/teachers/{uuid}"), newGuru, params);
+			return true;
+		} else if(user.getId_role() == 4) {
+			SivitasSiswaModel newSiswa = new SivitasSiswaModel(user);
+			restTemplate.put((uri+"/students/{uuid}"), newSiswa, params);
+			return true;
+		} else {
+			SivitasPegawaiModel newPegawai = new SivitasPegawaiModel(user);
+			restTemplate.put((uri+"/employees/{uuid}"), newPegawai, params);
 			return true;
 		}
 	}
@@ -75,7 +85,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserModel getUserByuuid(String uuid) {
-
 		return UserDb.findByuuid(uuid);
 	}
 
@@ -85,12 +94,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deletePengajuanSurat(String uuid) {
+	public void deleteUser(String uuid) {
 		UserDb.delete(this.getUserByuuid(uuid));
 	}
 
 	@Override
-	public void updateUser(String uuid, UserModel user) {
+	public boolean updateUser(String uuid, UserModel user) {
 		UserModel toset = this.getUserByuuid(uuid);
 		toset.setId_role(user.getId_role());
 		toset.setAlamat(user.getAlamat());
@@ -98,6 +107,7 @@ public class UserServiceImpl implements UserService {
 		toset.setTanggal_lahir(user.getTanggal_lahir());
 		toset.setTelepon(user.getTelepon());
 		toset.setTempat_lahir(user.getTempat_lahir());
+		return(updateUserSivitas(toset));
 	}
 
 	@Override
