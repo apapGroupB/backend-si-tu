@@ -1,5 +1,8 @@
 package com.apap.backend_tu.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
@@ -92,5 +95,10 @@ public class PinjamanModel {
 
     public static long getSerialversionuid() {
         return serialVersionUID;
+    }
+
+    public String toString() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(this);
     }
 }

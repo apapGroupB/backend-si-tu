@@ -1,5 +1,8 @@
 package com.apap.backend_tu.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,14 +14,18 @@ public class KoperasiPinjamanModel {
     private int jumlah_pengembalian;
     private String tanggal_pengembalian;
     private String tanggal_disetujui;
+
+    public KoperasiPinjamanModel () {
+
+	}
     
     public KoperasiPinjamanModel(PinjamanModel pinjaman) {
     	this.status=pinjaman.getStatus();
     	this.jumlah_pinjaman=pinjaman.getJumlah_pinjaman();
     	this.tanggal_pengajuan=convertDateToString(pinjaman.getTanggal_pengajuan());
-    	this.jumlah_pengembalian=pinjaman.getJumlah_pengembalian();
-    	this.tanggal_pengembalian=convertDateToString(pinjaman.getTanggal_pengembalian());
-    	this.tanggal_disetujui=convertDateToString(pinjaman.getTanggal_disetujui());
+    	this.jumlah_pengembalian=pinjaman.getJumlah_pengembalian() == 0 ? 0 : pinjaman.getJumlah_pengembalian();
+    	this.tanggal_pengembalian=pinjaman.getTanggal_pengembalian() == null ? null : convertDateToString(pinjaman.getTanggal_pengembalian());
+    	this.tanggal_disetujui=pinjaman.getTanggal_disetujui() == null ? null : convertDateToString(pinjaman.getTanggal_disetujui());
     }
     
     public String convertDateToString(Date dt) {
@@ -73,5 +80,10 @@ public class KoperasiPinjamanModel {
 
 	public void setTanggal_disetujui(String tanggal_disetujui) {
 		this.tanggal_disetujui = tanggal_disetujui;
+	}
+
+	public String toString() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return gson.toJson(this);
 	}
 }

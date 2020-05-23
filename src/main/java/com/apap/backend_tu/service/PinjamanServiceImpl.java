@@ -22,7 +22,7 @@ public class PinjamanServiceImpl implements PinjamanService {
 		final String url = "https://webservice-situ.free.beeceptor.com/koperasi/pengajuan-pinjaman";
 		RestTemplate restTemplate = new RestTemplate();
 		KoperasiPinjamanModel koperasi = new KoperasiPinjamanModel(pinjaman);
-		KoperasiPinjamanModel result = restTemplate.postForObject((url), koperasi, KoperasiPinjamanModel.class);
+		String result = restTemplate.postForObject((url), koperasi, String.class);
 		return true;}
 
 	@Override
