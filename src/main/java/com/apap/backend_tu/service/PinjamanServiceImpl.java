@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.apap.backend_tu.model.KoperasiPinjamanModel;
 import com.apap.backend_tu.model.PinjamanModel;
-import com.apap.backend_tu.model.SivitasSiswaModel;
-import com.apap.backend_tu.model.UserModel;
 import com.apap.backend_tu.repository.PinjamanDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 public class PinjamanServiceImpl implements PinjamanService {
 	@Autowired
 	private PinjamanDb pinjamanDb;
-	
+
 	private static boolean addPinjamanKoperasi(PinjamanModel pinjaman) {
 		final String url = "https://webservice-situ.free.beeceptor.com/koperasi/pengajuan-pinjaman";
 		RestTemplate restTemplate = new RestTemplate();

@@ -27,8 +27,8 @@ public class PerpustakaanWebService {
 
         String role = "5";
         int total = 0;
-        for(int j = 0; j < result.length(); j++) {
-            if(role.charAt(0) == result.charAt(j) ) {
+        for (int j = 0; j < result.length(); j++) {
+            if (role.charAt(0) == result.charAt(j)) {
                 total++;
             }
         }
