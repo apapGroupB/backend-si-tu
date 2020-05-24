@@ -13,12 +13,19 @@ public interface DashboardDB extends JpaRepository<PengajuanSuratModel, Long> {
 //    @Query(value = "WITH list_date AS (SELECT ( (NOW() + INTERVAL '1 day')  + CONCAT(IFNULL((s::LONGTEXT, '') , ' day'))::VARCHAR(30) ::DATETIME(0) AS created FROM generate_series(-20, 20, 1) AS s) select new ValueModel(count(ps.id_jenis_surat), DATE_FORMAT(created, '%Y-%m-%d') as submit_date) FROM list_date left join pengajuan_surat ps on ps.tanggal_pengajuan::longtext = DATE_FORMAT(created, '%Y-%m-%d') WHERE created BETWEEN NOW()::DATE-EXTRACT(DOW FROM NOW())::INTEGER-14 AND (NOW() + INTERVAL '1 day')::DATE-EXTRACT(DOW from NOW())::INTEGER group by ps.id_jenis_surat, DATE_FORMAT(created, '%Y-%m-%d') order by submit_date;", nativeQuery = true)
 //    List<ValueModel> getPengajuanList();
 
-    @Query(value = "select count(ps.id_jenis_surat), js.nama, ps.tanggal_pengajuan\n" +
-            "from pengajuan_surat ps\n" +
-            "join jenis_surat js\n" +
-            "on js.id = ps.id_jenis_surat\n" +
-            "where ps.tanggal_pengajuan BETWEEN DATE_SUB(NOW(), INTERVAL 14 DAY) AND NOW()\n" +
-            "GROUP by ps.id_jenis_surat, ps.tanggal_pengajuan;", nativeQuery = true)
+    @Query(value = "WITH list_date AS (\n" +
+            "    SELECT ( (NOW() + INTERVAL '1 day')  + (s::TEXT || ' day')::INTERVAL )::TIMESTAMP(0) AS created\n" +
+            "    FROM generate_series(-20, 20, 1) AS s\n" +
+            ")\n" +
+            "select count(ps.id_jenis_surat), TO_CHAR(created, 'YYYY-MM-DD') as submit_date\n" +
+            "FROM list_date \n" +
+            "left join pengajuan_surat ps\n" +
+            "on ps.tanggal_pengajuan::text = TO_CHAR(created, 'YYYY-MM-DD')\n" +
+            "WHERE created BETWEEN\n" +
+            "    NOW()::DATE-EXTRACT(DOW FROM NOW())::INTEGER-14\n" +
+            "    AND (NOW() + INTERVAL '1 day')::DATE-EXTRACT(DOW from NOW())::INTEGER\n" +
+            "group by ps.id_jenis_surat, TO_CHAR(created, 'YYYY-MM-DD')\n" +
+            "order by submit_date;\n", nativeQuery = true)
     List<Object> getPengajuanList();
 
     @Query(value = "SELECT count(*) from pengajuan_surat", nativeQuery = true)
