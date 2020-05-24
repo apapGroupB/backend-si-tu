@@ -16,7 +16,7 @@ public class DashboardServiceImpl implements DashboardService {
     public DashboardModel getAllData() {
 //        DashboardModel newData = new DashboardModel();
         DashboardModel newData = new DashboardModel(
-//                dashboardDB.getPengajuanList(),
+                dashboardDB.getPengajuanList(),
                 dashboardDB.getByJenisSurat(),
                 dashboardDB.getTotalUser(),
                 dashboardDB.getTotalLowongan(),

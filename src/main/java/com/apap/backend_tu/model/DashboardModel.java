@@ -12,7 +12,7 @@ public class DashboardModel {
     public DashboardModel () {}
 
     public DashboardModel (
-//            List<Object> pengajuan_list,
+            List<Object> pengajuan_list,
             List<Object> status_list,
             int total_user,
             int total_surat,
