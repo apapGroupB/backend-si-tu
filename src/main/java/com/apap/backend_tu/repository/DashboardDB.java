@@ -30,6 +30,6 @@ public interface DashboardDB extends JpaRepository<PengajuanSuratModel, Long> {
     @Query(value = "SELECT count(*) from user_profile", nativeQuery = true)
     int getTotalUser();
 
-    @Query(value = "SELECT count(ps.id_jenis_surat), js.nama from pengajuan_surat ps right join jenis_surat js on ps.id_jenis_surat = js.id group by ps.id_jenis_surat, js.nama order by ps.id_jenis_surat", nativeQuery = true)
+    @Query(value = "SELECT count(ps.status) as count, ps.status  from pengajuan_surat ps group by ps.status order by ps.status", nativeQuery = true)
     List<Object> getByJenisSurat();
 }
