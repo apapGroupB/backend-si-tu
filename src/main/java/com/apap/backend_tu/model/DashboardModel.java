@@ -17,7 +17,7 @@ public class DashboardModel {
             int total_user,
             int total_surat,
             int total_pengajuan) {
-//        this.pengajuan_list = pengajuan_list;
+        this.pengajuan_list = pengajuan_list;
         this.status_list = status_list;
         this.total_user = total_user;
         this.total_surat = total_surat;
