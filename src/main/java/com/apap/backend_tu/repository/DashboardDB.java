@@ -26,5 +26,8 @@ public interface DashboardDB extends JpaRepository<PengajuanSuratModel, Long> {
     int getTotalUser();
 
     @Query(value = "SELECT count(ps.status) as count, ps.status  from pengajuan_surat ps group by ps.status order by ps.status", nativeQuery = true)
-    List<Object> getByJenisSurat();
+    List<Object> getByStatusSurat();
+
+    @Query(value = "SELECT jumlah, judul as name FROM `lowongan` ORDER BY jumlah desc LIMIT 5;", nativeQuery = true)
+    List<Object> getTopFiveLowongan();
 }
