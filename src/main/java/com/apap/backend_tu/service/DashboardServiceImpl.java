@@ -18,7 +18,6 @@ public class DashboardServiceImpl implements DashboardService {
         DashboardModel newData = new DashboardModel(
                 dashboardDB.getPengajuanList(),
                 dashboardDB.getByStatusSurat(),
-                dashboardDB.getTopFiveLowongan(),
                 dashboardDB.getTotalUser(),
                 dashboardDB.getTotalLowongan(),
                 dashboardDB.getTotalPengajuan()
