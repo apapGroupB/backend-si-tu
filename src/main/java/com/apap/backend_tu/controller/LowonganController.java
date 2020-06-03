@@ -1,6 +1,5 @@
 package com.apap.backend_tu.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.apap.backend_tu.model.LowonganModel;
@@ -38,9 +37,9 @@ public class LowonganController {
     @GetMapping(value = "/viewall")
     public List<LowonganModel> lowonganViewAll() {
         List<LowonganModel> lowongan = lowonganService.getAllLowongan();
-        if(lowonganService.validaLowonganPerpus().size() == 0) {
+        if (lowonganService.validaLowonganPerpus().size() == 0) {
             RestUserModel userRequired = perpustakaanWebService.getTotalUserPustakawan();
-            if(userRequired.getTotal() < 5) {
+            if (userRequired.getTotal() < 5) {
                 LowonganModel newLowongan = new LowonganModel(5 - userRequired.getTotal());
                 lowonganService.addLowongan(newLowongan);
             }

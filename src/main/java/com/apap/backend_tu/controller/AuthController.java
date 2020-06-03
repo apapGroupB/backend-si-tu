@@ -1,7 +1,5 @@
 package com.apap.backend_tu.controller;
 
-import java.util.Objects;
-
 import com.apap.backend_tu.model.AuthRequestModel;
 import com.apap.backend_tu.model.UserModel;
 import com.apap.backend_tu.repository.UserDb;
@@ -17,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.apap.backend_tu.model.AuthRequestModel;
 import com.apap.backend_tu.model.AuthResponseModel;
 import com.apap.backend_tu.security.JwtTokenUtil;
 import com.apap.backend_tu.service.AuthService;
-
 
 @RestController
 
@@ -41,17 +37,18 @@ public class AuthController {
     private UserDb userDb;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequestModel authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequestModel authenticationRequest)
+            throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
         UserModel userAuth = userDb.findByUsername(authenticationRequest.getUsername());
 
-        return ResponseEntity.ok(new AuthResponseModel(token, userAuth.getNama(), userAuth.getUsername(), userAuth.getId_role(), userAuth.getUuid()));
+        return ResponseEntity.ok(new AuthResponseModel(token, userAuth.getNama(), userAuth.getUsername(),
+                userAuth.getId_role(), userAuth.getUuid()));
     }
 
     private void authenticate(String username, String password) throws Exception {

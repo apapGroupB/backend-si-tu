@@ -2,7 +2,6 @@ package com.apap.backend_tu.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -121,7 +120,8 @@ public class LowonganModel implements Serializable {
         return serialVersionUID;
     }
 
-    public LowonganModel() {}
+    public LowonganModel() {
+    }
 
     public LowonganModel(int jumlah) {
         java.util.Date now = new java.util.Date();
@@ -129,7 +129,7 @@ public class LowonganModel implements Serializable {
         this.id_jenis_lowongan = 5;
         this.jumlah = jumlah;
         this.tanggal_dibuka = new Date(now.getTime());
-        this.tanggal_ditutup = new Date(now.getTime() + 31l*24l*60l*60l*1000l);
+        this.tanggal_ditutup = new Date(now.getTime() + 31l * 24l * 60l * 60l * 1000l);
         this.keterangan = "“Dibutuhkan Pustakawan Cakap";
         this.uuid_user = "SI Perpustakaan";
     }
