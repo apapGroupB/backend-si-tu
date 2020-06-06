@@ -32,7 +32,7 @@ public class JenisLowonganController {
         return jenisLowongan;
     }
 
-    @DeleteMapping(value = "/delete/{delId}")
+    @GetMapping(value = "/delete/{delId}")
     public String deleteJenisLowongan(@PathVariable("delId") long id) {
         jenisLowonganService.removeJenisLowongan(id);
         return "Jenis lowongan terhapus";
