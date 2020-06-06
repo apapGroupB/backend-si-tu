@@ -42,5 +42,12 @@ public class PengajuanSuratController {
 		pengajuanSuratService.deletePengajuanSurat(id);
 		return true;
 	}
+	
+	@GetMapping(value = "/view/{uuid}")
+	private List<PengajuanSuratModel> hapusPengajuan(@PathVariable(value = "uuid") String uuid, Model model) {
+		List<PengajuanSuratModel> pengajuanSurat = pengajuanSuratService.getPengajuanByuuid(uuid);
+		return pengajuanSurat;
+	}
+
 
 }

@@ -1,17 +1,8 @@
 package com.apap.backend_tu.rest;
 
-import com.apap.backend_tu.model.LowonganModel;
 import com.apap.backend_tu.model.RestUserModel;
-import com.apap.backend_tu.service.LowonganService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/webservice")
@@ -21,7 +12,7 @@ public class PerpustakaanWebService {
     @GetMapping(value = "perpustakaan/viewall")
     public RestUserModel getTotalUserPustakawan() {
 
-        final String uri = "http://si-perpus-b6.herokuapp.com/perpustakaan/api/employees";
+        final String uri = "http://si-perpus-b6.herokuapp.com/api/employees";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
 
