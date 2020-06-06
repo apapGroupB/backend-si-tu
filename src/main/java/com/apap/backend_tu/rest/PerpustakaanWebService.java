@@ -12,7 +12,7 @@ public class PerpustakaanWebService {
     @GetMapping(value = "perpustakaan/viewall")
     public RestUserModel getTotalUserPustakawan() {
 
-        final String uri = "http://si-perpus-b6.herokuapp.com/perpustakaan/api/employees";
+        final String uri = "http://si-perpus-b6.herokuapp.com/api/employees";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
 
