@@ -1,5 +1,9 @@
 package com.apap.backend_tu.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +26,16 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
 
 	@Override
 	public PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat) {
-		// Date date = Calendar.getInstance().getTime();
-		// DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
-		// String strDate = dateFormat.format(date);
-		// pengajuanSurat.setUuid_user(strDate);
-		// if()
-		// pengajuanSurat.setNomor_surat("0");
+		 Date date = Calendar.getInstance().getTime();
+		 DateFormat dateFormat = new SimpleDateFormat("yyyymmddHHmmssSSS");
+		 String strDate = dateFormat.format(date);
+		 pengajuanSurat.setUuid_user(strDate);
+		
+		 pengajuanSurat.setNomor_surat("0");
 
-		// if (pengajuanSurat.getTanggal_disetujui() == null) {
-		// pengajuanSurat.setTanggal_disetujui(null);
-		// }
+		 if (pengajuanSurat.getTanggal_disetujui() == null) {
+		 pengajuanSurat.setTanggal_disetujui(null);
+		 }
 
 		pengajuanSuratDb.save(pengajuanSurat);
 		return pengajuanSurat;
@@ -60,6 +64,11 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
 	@Override
 	public PengajuanSuratModel getPengajuanSuratByNoSurat(String nomor_surat) {
 		return pengajuanSuratDb.findByNomorSurat(nomor_surat);
+	}
+
+	@Override
+	public List<PengajuanSuratModel> getPengajuanByuuid(String uuid) {
+		return pengajuanSuratDb.findByuuid(uuid);
 	}
 
 }

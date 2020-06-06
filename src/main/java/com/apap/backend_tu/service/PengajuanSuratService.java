@@ -16,4 +16,6 @@ public interface PengajuanSuratService {
 	PengajuanSuratModel addPengajuanSurat(PengajuanSuratModel pengajuanSurat);
 
 	PengajuanSuratModel getPengajuanSuratByNoSurat(String nomor_surat);
+	
+	List<PengajuanSuratModel> getPengajuanByuuid(String uuid);
 }
