@@ -1,5 +1,6 @@
 package com.apap.backend_tu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.apap.backend_tu.model.LowonganModel;
@@ -37,23 +38,30 @@ public class LowonganController {
     @GetMapping(value = "/viewall")
     public List<LowonganModel> lowonganViewAll() {
         List<LowonganModel> lowongan = lowonganService.getAllLowongan();
+        int userRequired = 5 - perpustakaanWebService.getTotalUserPustakawan().getTotal();
         if (lowonganService.validaLowonganPerpus().size() == 0) {
-            RestUserModel userRequired = perpustakaanWebService.getTotalUserPustakawan();
-            if (userRequired.getTotal() < 5) {
-                LowonganModel newLowongan = new LowonganModel(5 - userRequired.getTotal());
+            if (userRequired <= 5) {
+                LowonganModel newLowongan = new LowonganModel(5 - userRequired);
                 lowonganService.addLowongan(newLowongan);
+            }
+        } else if (lowonganService.validaLowonganPerpus().size() == 1) {
+            LowonganModel lowPustakawan = lowonganService.validaLowonganPerpus().get(0);
+            if (userRequired <= 5 && lowPustakawan.getJumlah() != userRequired) {
+                lowPustakawan.setJumlah(userRequired);
+                lowonganService.updateLowongan(lowPustakawan.getId(), lowPustakawan);
             }
         }
         return lowongan;
     }
 
-    @GetMapping(value = "perpustakaan/viewall")
-    public List<RestUserModel> perpustakaanViewAll() {
-        final String uri = "http://si-perpus-b6.herokuapp.com/perpustakaan/user/viewall";
-        RestTemplate restTemplate = new RestTemplate();
-        List<RestUserModel> result = restTemplate.getForObject(uri, List.class);
-        return result;
-    }
+    // @GetMapping(value = "perpustakaan/viewall")
+    // public List<RestUserModel> perpustakaanViewAll() {
+    // final String uri =
+    // "http://si-perpus-b6.herokuapp.com/perpustakaan/user/viewall";
+    // RestTemplate restTemplate = new RestTemplate();
+    // List<RestUserModel> result = restTemplate.getForObject(uri, List.class);
+    // return result;
+    // }
 
     @PostMapping(value = "update/{id}")
     public LowonganModel updateLowonganSubmit(@PathVariable long id, @RequestBody LowonganModel lowongan) {
