@@ -2,6 +2,7 @@ package com.apap.backend_tu.rest;
 
 import com.apap.backend_tu.model.PengajuanSuratModel;
 import com.apap.backend_tu.model.RestPengajuanSuratModel;
+import com.apap.backend_tu.model.StatusModel;
 import com.apap.backend_tu.service.PengajuanSuratService;
 
 import org.slf4j.Logger;
@@ -32,8 +33,9 @@ public class SiruanganWebService {
         PengajuanSuratModel surat = pengajuanSuratService.getPengajuanSuratByNoSurat(nomor_surat);
         if (surat == null) {
             logger.error("Surat with nomor_surat {} not found", nomor_surat);
-            String error = "Surat with nomor_surat " + nomor_surat + " not found";
-            return new ResponseEntity<String>(error, HttpStatus.NOT_FOUND);
+            // String error = "Surat with nomor_surat " + nomor_surat + " not found";
+            StatusModel status = new StatusModel(false, "Not found", "");
+            return new ResponseEntity<StatusModel>(status, HttpStatus.NOT_FOUND);
         }
         RestPengajuanSuratModel result = new RestPengajuanSuratModel(surat.getNomor_surat(),
                 surat.getTanggal_pengajuan(), surat.getTanggal_disetujui(), surat.getKeterangan(), surat.getStatus(),
